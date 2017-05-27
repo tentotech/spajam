@@ -16,12 +16,12 @@ var payloadActions = withLabels({})
 function signin(screen_name) {
   return dispatch => {
     fetchMySQL(`INSERT IGNORE INTO user(screen_name) VALUES ("${screen_name}")`).then(response => {
-      Cookies.set('id', response.inserted_id)
+      Cookies.set('id', response.insertId)
       Cookies.set('screen_name', screen_name)
       dispatch({
         type: 'SIGNIN',
         payload: {
-          id: response.inserted_id,
+          id: response.insertId,
           screen_name
         }
       })
