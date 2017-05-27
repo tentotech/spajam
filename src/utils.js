@@ -12,7 +12,7 @@ function recursiveBind(map, dispatch) {
   }
 
   return keys.reduce(
-    (acc, key) => Object.assign(acc, {[key]: recursiveBind(map, dispatch)}),
+    (acc, key) => Object.assign(acc, {[key]: recursiveBind(map[key], dispatch)}),
     {}
   )
 }
