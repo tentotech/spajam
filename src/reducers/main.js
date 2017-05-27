@@ -8,8 +8,18 @@ export const reducer = handleActions({
   [actions.main.signin]: (state, {payload}) => {
     return Object.assign({}, state, {
       currentUser: payload.screen_name
+    }),
+  [actions.main.fetchAnimes]: (state, {payload}) =>
+    Object.assign({}, state, {
+      animes: payload.animes
+    }),
+  [actions.main.fetchFavoriteAnimes]: (state, {payload}) =>
+    Object.assign({}. state, {
+      favoriteAnimes: payload.favoriteAnimes
     })
   }
 }, {
-  currentUser: Cookies.get('screen_name')
+  currentUser: Cookies.get('screen_name'),
+  animes: [],
+  favoriteAnimes: []
 })
