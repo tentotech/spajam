@@ -4,6 +4,10 @@ import Header from './Header'
 
 
 class Spot extends React.Component {
+  componentDidMount() {
+    this.props.main.fetchSacredPlaces(this.props.params.id)
+  }
+
   render() {
     return <main className="spot">
       <div className="cover" style={{'backgroundImage': `url("http://blog-imgs-92.fc2.com/b/l/o/blogman55/livejupiter_1461993406_12701.jpg")`}}>
@@ -14,15 +18,15 @@ class Spot extends React.Component {
       <div className="info">
         <p>
           <i className="ion-android-star"/>
-          <span>アニメの名前</span>
+          <span>${this.props.main.sacredPlace.title}</span>
         </p>
         <p>
           <i className="ion-location"/>
-          <span>住所やで</span>
+          <span>{this.props.main.sacredPlace.address}</span>
         </p>
         <p>
           <i className="ion-chatbubble-working"/>
-          <span>コメントコメントコメントコメントコメントコメントコメントコメント</span>
+          <span>{this.props.main.sacredPlace.comment}</span>
         </p>
       </div>
       <div className="friends">
@@ -43,4 +47,4 @@ class Spot extends React.Component {
   }
 }
 
-export default container(spot)
+export default container(Spot)
