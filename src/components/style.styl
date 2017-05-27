@@ -18,16 +18,33 @@
 	padding 0!important
 	
 div.header
-	width 100%		
+	width 100%
+	position stikcy
 	background #fcfcfc
 	border-bottom solid 1px #eee
 	p
 		text-align center
 		width 100%
-		padding .75em 0
+		padding .75em 0!important
 		color #333
 		font-size 1.5em
 		letter-spacing 2px
+
+.preferred-anime-config
+	padding .5em!important
+	label
+		margin .25em!important
+		font-size .9em
+		display inline-block
+		padding .2em .35em!important
+		color #fff
+		border-radius 5px
+		cursor pointer
+		&.active-label
+			background #8bc34a
+		&.not-active-label
+			background #777
+			
 main.spot
 	.cover
 		width 100%
