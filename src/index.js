@@ -25,7 +25,7 @@ renderHMR(App)
 
 if (module.hot) {
   module.hot.accept('./components', () => {
-    const App = require('./components').default
+    const App = require('./components/App').default
     renderHMR(App)
   })
 
