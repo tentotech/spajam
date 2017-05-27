@@ -18,24 +18,20 @@ class Spot extends React.Component {
       <div className="info">
         <p>
           <i className="ion-android-star"/>
-          <span>${this.props.main.sacredPlace.title}</span>
+          <span>${this.props.main.sacredPlace.anime.title}</span>
         </p>
         <p>
           <i className="ion-location"/>
-          <span>{this.props.main.sacredPlace.address}</span>
+          <span>{this.props.main.sacredPlace.sacred_place.address}</span>
         </p>
         <p>
           <i className="ion-chatbubble-working"/>
-          <span>{this.props.main.sacredPlace.comment}</span>
+          <span>{this.props.main.sacredPlace.sacred_place.comment}</span>
         </p>
       </div>
       <div className="friends">
         <p>ここを訪れたユーザー</p>
-        <img src={`http://furyu.nazo.cc/twicon/pattern_match/normal`}/>
-        <img src={`http://furyu.nazo.cc/twicon/pattern_match/normal`}/>
-        <img src={`http://furyu.nazo.cc/twicon/pattern_match/normal`}/>
-        <img src={`http://furyu.nazo.cc/twicon/pattern_match/normal`}/>
-        <img src={`http://furyu.nazo.cc/twicon/pattern_match/normal`}/>
+        {this.props.main.sacredPlace.users.map(user => <img src={`http://furyu.nazo.cc/twicon/${user.screen_name}/normal`}/>)}
       </div>
       <div className="googleMap">
         <p>

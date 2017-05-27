@@ -28,5 +28,7 @@ export const reducer = handleActions({
   currentUser: {id: Cookies.get('id'), screen_name: Cookies.get('screen_name')},
   animes: [],
   favoriteAnimes: [],
-  sacredPlace: {}
+  sacredPlace: {
+    anime: {}, users: [], sacred_place: {}
+  }
 })
