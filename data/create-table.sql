@@ -2,3 +2,4 @@ CREATE TABLE user (id INT PRIMARY KEY AUTO_INCREMENT, screen_name CHAR(15) NOT N
 CREATE TABLE anime (id INT PRIMARY KEY AUTO_INCREMENT, title CHAR(255) NOT NULL UNIQUE);
 CREATE TABLE sacred_place (id INT PRIMARY KEY AUTO_INCREMENT, anime_id INT, name CHAR(255) NOT NULL UNIQUE, longitude DOUBLE NOT NULL, latitude DOUBLE NOT NULL, radius DOUBLE FOREIGN KEY(anime_id) REFERENCES anime(id));
 CREATE TABLE history (id INT PRIMARY KEY AUTO_INCREMENT, user_id INT, secred_place_id INT, timestamp DATETIME NOT NULL, FOREIGN KEY(user_id) REFERENCES user(id), FOREIGN KEY(sacred_place_id) REFERENCES sacred_place(id));
+CREATE TABLE favorite_anime (id INT PRIMARY KEY AUTO_INCREMENT, user_id INT, anime_id INT, FOREIGN KEY(user_id) REFERENCES user(id), FOREIGN KEY(anime_id) REFERENCES anime(id));

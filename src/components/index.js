@@ -4,7 +4,10 @@ import {Router} from 'react-router'
 import Top from './Top'
 import Header from './Header'
 import MyPage from './MyPage.js'
+
 import spot from './spot.js'
+import FavoriteAnimeConfig from './FavoriteAnimeConfig.js'
+
 import './style'
 
 
@@ -28,6 +31,9 @@ const routes = [
       {
 		path: '/spot/:id',
         component: spot
+      }, {
+        path: 'favorite-anime-config',
+        component: FavoriteAnimeConfig
       }
     ]
   }
