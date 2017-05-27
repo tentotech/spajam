@@ -16,6 +16,20 @@
     "url": "https://github.com/tentotech/spajam/issues"
   },
   "homepage": "https://github.com/tentotech/spajam#readme",
+
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "cheerio-httpcli": "^0.6.11",
+    "mysql": "^2.13.0",
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4",
+    "react-redux": "^5.0.5",
+    "react-router": "^4.1.1",
+    "react-router-redux": "^4.0.8",
+    "redux": "^3.6.0",
+    "redux-thunk": "^2.2.0",
+    "superagent": "^3.5.2"
+  },
   "dependencies": {},
   "devDependencies": {
     "autoprefixer": "^7.1.1",
