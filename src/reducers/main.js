@@ -7,7 +7,7 @@ import actions from '../actions'
 export const reducer = handleActions({
   [actions.main.signin]: (state, {payload}) =>
     Object.assign({}, state, {
-      currentUser: payload.screen_name
+      currentUser: payload.user
     }),
   [actions.main.fetchAnimes]: (state, {payload}) =>
     Object.assign({}, state, {
@@ -20,7 +20,7 @@ export const reducer = handleActions({
     })
   }
 }, {
-  currentUser: Cookies.get('screen_name'),
+  currentUser: {id: Cookies.get('id'), Cookies.get('screen_name')},
   animes: [],
   favoriteAnimes: []
 })

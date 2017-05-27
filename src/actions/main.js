@@ -11,12 +11,23 @@ function fetchMySQL(query) {
     .then(json => json.response)
 }
 
-var payloadActions = withLabels({
-  SIGNIN: screen_name => {
-    Cookies.set('screen_name', screen_name)
-    return {screen_name}
+var payloadActions = withLabels({})
+
+function signin(screen_name) {
+  return dispatch => {
+    fetchMySQL(`INSERT IGNORE INTO user(screen_name) VALUES ("${screen_name}")`).then(response => {
+      Cookies.set('id', response.inserted_id)
+      Cookies.set('screen_name', screen_name)
+      dispatch({
+        type: 'SIGNIN',
+        payload: {
+          id: response.inserted_id,
+          screen_name
+        }
+      })
+    })
   }
-})
+}
 
 function fetchAnimes() {
   console.log('fetchAnimes')
@@ -31,11 +42,7 @@ fetchAnimes.toString = () => 'FETCH_ANIMES'
 
 function fetchFavoriteAnimes() {
   return (dispatch, getState) => {
-    const {currentUser} = getState().main
-    if(currentUser === undefined) {
-      alert('currentUser is undefined')
-    }
-    fetchMySQL(`SELECT favorite_anime.* FROM favorite_anime, user WHERE user.screen_name = ${currentUser}`)
+    fetchMySQL(`SELECT favorite_anime.* FROM favorite_anime, user WHERE user.screen_name = ${getState().main.currentUser.id}`)
       .then(favoriteAnimes => dispatch({
         type: 'FETCH_FAVORITE_ANIMES',
         payload: {favoriteAnimes}
@@ -46,12 +53,11 @@ fetchFavoriteAnimes.toString = () => 'FETCH_FAVORITE_ANIMES'
 
 function setAnimeLike(anime_id, isFavorite) {
   return (dispatch, getState) => {
-    const {currentUser} = getState().main
     if (isFavorite) {
-      fetchMySQL(`INSERT INTO favorite_anime(user_id, anime_id) VALUES (${currentUser}, ${anime_id})`)
+      fetchMySQL(`INSERT INTO favorite_anime(user_id, anime_id) VALUES (${getState().main.currentUser.id}, ${anime_id})`)
         .then(() => dispatch(fetchFavoriteAnimes()))
     } else {
-      fetchMySQL(`DELETE FROM favorite_anime WHERE user_id = ${currentUser} AND anime_id = ${anime_id}`)
+      fetchMySQL(`DELETE FROM favorite_anime WHERE user_id = ${getState().main.currentUser.id} AND anime_id = ${anime_id}`)
         .then(() => dispatch(fetchFavoriteAnimes()))
     }
   }
@@ -59,4 +65,4 @@ function setAnimeLike(anime_id, isFavorite) {
 setAnimeLike.toString = () => 'SET_ANIME_LIKE'
 
 
-export const actions = Object.assign({}, payloadActions, {fetchAnimes, fetchFavoriteAnimes, setAnimeLike})
+export const actions = Object.assign({}, payloadActions, {fetchAnimes, fetchFavoriteAnimes, setAnimeLike, signin})
