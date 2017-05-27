@@ -4,7 +4,7 @@ import {bindActionCreators} from 'redux'
 import actions from './actions'
 
 
-function fetchMySQL(query) {
+export function fetchMySQL(query) {
   console.log('query invoked: ', query)
   const body = new URLSearchParams()
   body.append('sql', query)
