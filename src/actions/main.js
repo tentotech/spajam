@@ -2,5 +2,8 @@ import {withLabels} from './utils'
 
 
 export const actions = withLabels({
-  CHANGE_THE_WORLD: ['pong']
+  SIGNIN: screen_name => {
+    document.cookie = `screen_name=${screen_name}`
+    return { type: 'SIGNIN', payload: {screen_name} }
+  }
 })
