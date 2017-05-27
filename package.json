@@ -43,6 +43,7 @@
     "react-hot-loader": "^3.0.0-beta.7",
     "redux-actions": "^2.0.3",
     "redux-devtools-extension": "^2.13.2",
+    "redux-thunk": "^2.2.0",
     "style-loader": "^0.18.1",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.1",

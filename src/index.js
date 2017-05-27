@@ -1,5 +1,6 @@
 import {render} from 'react-dom'
 import {browserHistory} from 'react-router'
+import thunk from 'redux-thunk'
 import {AppContainer} from 'react-hot-loader'
 import {createStore, applyMiddleware} from 'redux'
 import {syncHistoryWithStore, routerMiddleware} from 'react-router-redux'
@@ -9,7 +10,7 @@ import App from './components/App'
 import {reducer} from './reducers'
 
 
-const middleware = composeWithDevTools(applyMiddleware(routerMiddleware(browserHistory)))
+const middleware = composeWithDevTools(applyMiddleware(routerMiddleware(browserHistory), thunk))
 const store = createStore(reducer, middleware)
 const history = syncHistoryWithStore(browserHistory, store)
 
