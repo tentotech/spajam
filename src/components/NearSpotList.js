@@ -4,7 +4,7 @@ import Header from './Header'
 
 class NearSpotItem extends React.Component {
   render () {
-    return <a href={'/spot/' + this.props.locationId}>
+    return <a href={'/spot/' + this.props.id}>
       <label>{this.props.name}</label>
       <label>{this.props.title}</label>
       <label>{this.props.address}</label>
@@ -23,7 +23,7 @@ class NearSpotList extends React.Component {
   render() {
     return (
       <div>
-        {this.props.main.nearSpots.map(nearSpot => <NearSpotItem {...nearSpot}/>)}
+        {this.props.main.nearSpots.map(nearSpot => <NearSpotItem {...nearSpot} key={nearSpot.id}/>)}
       </div>
     )
   }
