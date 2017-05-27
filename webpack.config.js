@@ -5,7 +5,6 @@ const poststylus = require('poststylus')
 
 module.exports = {
   entry: [
-    'react-hot-loader/patch',
     './src/index.js'
   ],
   output: {
@@ -18,7 +17,7 @@ module.exports = {
         test: /\.js$/,
         include: __dirname + '/src',
         exclude: /node_modules/,
-        use: ['react-hot-loader/webpack', 'babel-loader'],
+        use: ['babel-loader'],
       },
       {
         test: /.pug$/,
@@ -38,8 +37,7 @@ module.exports = {
   },
   devServer: {
     contentBase: './static',
-    historyApiFallback: true,
-    hot: true
+    historyApiFallback: true
   },
   plugins: [
     new webpack.LoaderOptionsPlugin({
@@ -49,7 +47,6 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       template: './src/index.pug'
-    }),
-    new webpack.HotModuleReplacementPlugin()
+    })
   ]
 }
