@@ -18,6 +18,64 @@
 	padding 0!important
 	text-decoration none
 
+main.timeline
+	.items
+		a.item
+			border-bottom solid 1px #ccc
+			display flex
+			padding .5em!important
+			justify-content center
+			align-items center
+			.icon
+				width 20%
+				display flex
+				justify-content center
+				align-items center
+				position relative
+				img
+					width 95%
+					border solid 2px #eee
+					margin auto
+					border-radius 100%
+			.data
+				width 80%
+				padding 0 .5em!important
+				p
+					color #666
+					letter-spacing 1px
+					font-size .75em
+					padding .15em 0 !important
+					i
+						color #8bc34a
+						font-size 1.5em
+						margin-right .1em
+						vertical-align middle
+					span
+						vertical-align middle
+				h2
+					color #555
+					font-weight 500
+					font-size 1.1em
+					padding .2em 0 !important
+					letter-spacing 2px
+					overflow: hidden
+					white-space: nowrap
+					text-overflow: ellipsis
+					width 100%
+				.min-data
+					display flex
+					padding .2em 0
+					color #ccc!important
+					font-size .9em!important
+					p.addr
+						width 65%
+						overflow: hidden
+						white-space: nowrap
+						text-overflow: ellipsis
+					p.time
+						width 35%			
+						text-align right
+					color #777
 div.menu
 	z-index 50
 	position relative
