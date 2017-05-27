@@ -20,5 +20,5 @@ function recursiveBind(map, dispatch) {
 export const container = connect(
   _.identity,
   recursiveBind.bind(null, actions),
-  (state, props) => _.merge({}, state, props)
+  (state, actions, props) => _.merge({}, state, actions, props)
 )

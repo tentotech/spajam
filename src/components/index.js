@@ -4,6 +4,7 @@ import {Router} from 'react-router'
 import Top from './Top'
 import Header from './Header'
 import MyPage from './MyPage.js'
+import FavoriteAnimeConfig from './FavoriteAnimeConfig.js'
 import './style'
 
 
@@ -23,8 +24,11 @@ const routes = [
       {
         path: '/mypage',
         component: MyPage
+      }, {
+        path: 'favorite-anime-config',
+        component: FavoriteAnimeConfig
       }
-	]
+    ]
   }
 ]
 
