@@ -22,6 +22,8 @@ export const reducer = handleActions({
   [actions.main.fetchSacredPlaces]: (state, {payload}) => {
     return Object.assign({}, state, {
       sacredPlace: payload
+    })
+  },
   [actions.main.fetchNearSpot]: (state, {payload}) => {
     return Object.assign({}, state, {
       nearSpots: payload.nearSpots
