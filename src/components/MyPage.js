@@ -1,11 +1,12 @@
 import * as React from 'react'
+import {Link} from 'react-router'
 import {container} from '../utils'
 import Header from './Header'
 import Cookies from 'js-cookie'
 
 
-const HistoryItem = ({timestamp, sacred_place_name, anime_name}) => {
-  return <a>
+const HistoryItem = ({sacred_place_id, timestamp, sacred_place_name, anime_name}) => {
+  return <Link to={`/spot/${sacred_place_id}`}>
     <div className="icon">
       <i className="ion-flag"/>
     </div>
@@ -14,7 +15,7 @@ const HistoryItem = ({timestamp, sacred_place_name, anime_name}) => {
       <p>{anime_name}</p>
       <p>{timestamp}</p>
     </div>
-  </a>
+  </Link>
 }
 
 
@@ -35,7 +36,7 @@ class MyPage extends React.Component {
         </p>t
       </div>
       <div className="history">
-      {this.props.main.histories.map((history, index) => <HistoryItem sacred_place_name={history.name} timestamp={history.timestamp} anime_name={history.title} key={index} />)}
+      {this.props.main.histories.map((history, index) => <HistoryItem sacred_place_id={history.sacred_place_id} sacred_place_name={history.name} timestamp={history.timestamp} anime_name={history.title} key={index} />)}
       </div>
     </main>
   }
