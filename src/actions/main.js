@@ -1,15 +1,7 @@
 import Cookies from 'js-cookie'
 import {withLabels} from './utils'
+import {fetchMySQL} from '../utils'
 
-
-function fetchMySQL(query) {
-  console.log('query invoked: ', query)
-  const body = new URLSearchParams()
-  body.append('sql', query)
-  return fetch('http://302a08e6.ngrok.io/sql', {method: 'POST', mode: 'cors', body})
-    .then(res => res.json())
-    .then(json => json.response)
-}
 
 var payloadActions = withLabels({})
 
@@ -87,5 +79,12 @@ function fetchSacredPlaces(sacred_place_id) {
 }
 fetchSacredPlaces.toString = () => 'FETCH_SACRED_PLACES'
 
+function markAsRead(sacred_place_id) {
+  return (dispatch, getState) => {
+    fetchMySQL(`INSERT IGNORE INTO history(user_id, sacred_place_id, timestamp) VALUES (${getState().main.currentUser.id}, ${sacred_place_id}, NOW())`)
+  }
+}
+markAsRead.toString = () => 'MARK_AS_READ'
 
-export const actions = Object.assign({}, payloadActions, {fetchAnimes, fetchFavoriteAnimes, setAnimeLike, signin, fetchSacredPlaces})
+
+export const actions = Object.assign({}, payloadActions, {fetchAnimes, fetchFavoriteAnimes, setAnimeLike, signin, fetchSacredPlaces, markAsRead})
