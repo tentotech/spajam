@@ -23,7 +23,7 @@ class AnimeItem extends React.Component {
 const ConnectedAnimeItem = container(AnimeItem)
 
 
-export default class FavoriteAnimeConfig extends React.Component {
+export class FavoriteAnimeConfig extends React.Component {
   componentDidMount() {
     this.props.main.fetchFavoriteAnimes()
   }
@@ -36,3 +36,5 @@ export default class FavoriteAnimeConfig extends React.Component {
     </main>
   }
 }
+
+export default container(FavoriteAnimeConfig)
