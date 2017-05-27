@@ -9,7 +9,7 @@ import App from './components'
 import {reducer} from './reducers'
 
 
-const middleware = composeWithDevTools(applyMiddleware(routerMiddleware(browserHistory), thunk))
+const middleware = composeWithDevTools(applyMiddleware(thunk, routerMiddleware(browserHistory)))
 const store = createStore(reducer, middleware)
 const history = syncHistoryWithStore(browserHistory, store)
 
