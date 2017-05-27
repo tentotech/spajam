@@ -100,8 +100,9 @@ function fetchNearSpot() {
       longitude: position.coords.longitude
     }
   })
+  console.log(currentPosition)
   return (dispatch) => {
-    fetchMySQL(`SELECT * FROM sacred_place JOIN anime ON sacred_place.anime_id = anime.id ORDER BY SQRT(POW(sacred_place.latitude - ${currentPosition.latitude}, 2) + POW(sacred_place.longitude - ${currentPosition.longitude}, 2)) LIMIT 100`)
+    fetchMySQL(`SELECT * FROM sacred_place JOIN anime ON sacred_place.anime_id = anime.id WHERE sacred_place.latitude > ${currentPosition.latitude - 10} AND sacred_place.latitude < ${currentPosition.latitude + 10} AND sacred_place.longitude > ${currentPosition.longitude - 10} AND sacred_place.longitude < ${currentPosition.longitude + 10}`)
       .then(nearSpots => dispatch({
         type: 'FETCH_NEAR_SPOTS',
         payload: {nearSpots}
