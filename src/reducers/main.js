@@ -3,7 +3,7 @@ import {handleActions} from 'redux-actions'
 import actions from '../actions'
 
 
-
+debugger
 export const reducer = handleActions({
   [actions.main.signin]: (state, {payload}) =>
     Object.assign({}, state, {
@@ -23,7 +23,7 @@ export const reducer = handleActions({
     return Object.assign({}, state, {
       sacredPlace: payload
   [actions.main.fetchNearSpot]: (state, {payload}) => {
-    return Object.asnsign({}, state, {
+    return Object.assign({}, state, {
       nearSpots: payload.nearSpots
     })
   }
