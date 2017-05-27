@@ -5,7 +5,7 @@ import Top from './Top'
 import Header from './Header'
 import MyPage from './MyPage.js'
 
-import spot from './spot.js'
+import Spot from './Spot.js'
 import FavoriteAnimeConfig from './FavoriteAnimeConfig.js'
 
 import './style'
@@ -27,10 +27,9 @@ const routes = [
       {
         path: '/mypage',
         component: MyPage
-      },
-      {
-		path: '/spot/:id',
-        component: spot
+      }, {
+        path: '/spot/:id',
+        component: Spot
       }, {
         path: 'favorite-anime-config',
         component: FavoriteAnimeConfig

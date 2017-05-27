@@ -66,5 +66,26 @@ function setAnimeLike(anime_id, isFavorite) {
 }
 setAnimeLike.toString = () => 'SET_ANIME_LIKE'
 
+function fetchSacredPlaces(sacred_place_id) {
+  console.log('hahaha')
+  return dispatch => {
+    fetchMySQL(`SELECT * FROM sacred_place WHERE id = ${sacred_place_id}`).then(sacred_places => {
+      const sacred_place = sacred_places[0]
+      fetchMySQL(`SELECT * FROM anime WHERE id = ${sacred_place.anime_id}`).then(animes => {
+        const anime = animes[0]
+        fetchMySQL(`SELECT user.* FROM history JOIN sacred_place ON history.sacred_place_id = sacred_place.id JOIN user ON history.user_id = user.id WHERE sacred_place.id = ${sacred_place_id}`).then(users => {
+          dispatch({
+            type: 'FETCH_SACRED_PLACES',
+            payload: {
+              sacred_place, anime, users
+            }
+          })
+        })
+      })
+    })
+  }
+}
+fetchSacredPlaces.toString = () => 'FETCH_SACRED_PLACES'
 
-export const actions = Object.assign({}, payloadActions, {fetchAnimes, fetchFavoriteAnimes, setAnimeLike, signin})
+
+export const actions = Object.assign({}, payloadActions, {fetchAnimes, fetchFavoriteAnimes, setAnimeLike, signin, fetchSacredPlaces})
