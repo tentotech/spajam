@@ -88,5 +88,26 @@ function markAsRead(sacred_place_id) {
 }
 markAsRead.toString = () => 'MARK_AS_READ'
 
+function fetchNearSpot() {
+  console.log('fetchNearSpot')
+  let currentPosition = {
+    latitude: 0,
+    longitude: 0
+  }
+  navigator.geolocation.getCurrentPosition(function(position) {
+    currentPosition = {
+      latitude: position.coords.latitude,
+      longitude: position.coords.longitude
+    }
+  })
+  return (dispatch) => {
+    fetchMySQL()
+      .then(nearSpots => dispatch({
+        type: 'FETCH_NEAR_SPOTS',
+        payload: {nearSpots}
+      }))
+  }
+}
 
-export const actions = Object.assign({}, payloadActions, {fetchAnimes, fetchFavoriteAnimes, setAnimeLike, signin, fetchSacredPlaces, markAsRead})
+
+export const actions = Object.assign({}, payloadActions, {fetchAnimes, fetchFavoriteAnimes, setAnimeLike, signin, fetchSacredPlaces, markAsRead, fetchNearSpot})
