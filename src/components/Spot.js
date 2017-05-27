@@ -6,9 +6,9 @@ import Header from './Header'
 class Spot extends React.Component {
   componentDidMount() {
     this.props.main.fetchSacredPlaces(this.props.params.id)
-    console.log(this.props.main)
     if (this.props.location.query.mark_as_read) {
       this.props.main.markAsRead(this.props.params.id)
+      alert('ここに来たことを記録しました')
     }
   }
 
@@ -28,7 +28,7 @@ class Spot extends React.Component {
       <div className="info">
         <p>
           <i className="ion-android-star"/>
-          <span>${this.props.main.sacredPlace.anime.title}</span>
+          <span>{this.props.main.sacredPlace.anime.title}</span>
         </p>
         <p>
           <i className="ion-location"/>
