@@ -1,9 +1,17 @@
 const express = require('express')
 const app        = express()
 const bodyParser = require('body-parser')
-const sqlite3 = require('sqlite3')
-const db = new sqlite3.Database('./express-sql/db.sqlite3')
 const port = process.env.PORT || 3000
+
+const mysql      = require('mysql');
+const connection = mysql.createConnection({
+	host     : 'localhost',
+	user     : 'root',
+	password : 'Do_you_love_MySQL57?',
+	database: 'spajam2017'
+});
+
+connection.connect();
 
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
@@ -14,7 +22,7 @@ app.use(function(req, res, next) {
 })
 
 app.post('/sql',function(req,res){
-	db.run(req.body.sql, (err, resp) => {
+	connection.query(req.body.sql, (err, resp) => {
 		if(err)  res.status(400).json({error: err})
 		if(!err) res.json({response: resp || 'success'})
 	})
