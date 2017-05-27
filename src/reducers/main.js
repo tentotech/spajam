@@ -1,3 +1,4 @@
+import Cookies from 'js-cookie'
 import {handleActions} from 'redux-actions'
 import actions from '../actions'
 
@@ -10,5 +11,5 @@ export const reducer = handleActions({
     })
   }
 }, {
-  currentUser: null
+  currentUser: Cookies.get('screen_name')
 })
