@@ -3,6 +3,11 @@ import {container} from '../utils'
 import Header from './Header'
 
 class TimeLine extends React.Component {
+  componentDidMount() {
+    this.props.main.fetchTimeLine()
+    console.log(this.props.main)
+  }
+
   render() {
     return <main className='timeline'>
 		<Header/>

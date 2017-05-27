@@ -23,6 +23,11 @@ export const reducer = handleActions({
     return Object.assign({}, state, {
       sacredPlace: payload
     })
+  },
+  [actions.main.fetchTimeLine]:(state, {payload}) => {
+    return Object.assign({}, state, {
+      timeline: payload
+    })
   }
 }, {
   currentUser: {id: Cookies.get('id'), screen_name: Cookies.get('screen_name')},
