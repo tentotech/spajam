@@ -1,12 +1,12 @@
 import React from 'react'
 import {container} from '../utils'
-
+import Header from './Header'
 
 class AnimeItem extends React.Component {
   render() {
-    return <label>
+    return <label className={this.isFavorite() ? 'active-label' : 'not-active-label'}>
       {this.props.title}
-      <input type="checkbox" checked={this.isFavorite()} onChange={event => this.handleClick(event)} />
+      <input type="checkbox" checked={this.isFavorite()} onChange={event => this.handleClick(event)} style={{display: 'none'}} />
     </label>
   }
 
@@ -30,6 +30,7 @@ export class FavoriteAnimeConfig extends React.Component {
 
   render() {
     return <main className='preferred-anime-config'>
+		<Header/>
       {this.props.main.animes.map(({id, title}) =>
         <ConnectedAnimeItem id={id} title={title} key={id} />
       )}
