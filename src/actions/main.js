@@ -101,7 +101,7 @@ function fetchNearSpot() {
     }
   })
   return (dispatch) => {
-    fetchMySQL()
+    fetchMySQL(`SELECT * FROM sacred_place ORDER BY SQRT(POW(latitude - ${currentPosition.latitude}, 2) + POW(longitude - ${currentPosition.longitude})) LIMIT 100`)
       .then(nearSpots => dispatch({
         type: 'FETCH_NEAR_SPOTS',
         payload: {nearSpots}
