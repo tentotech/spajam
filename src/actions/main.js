@@ -78,5 +78,11 @@ function fetchSacredPlaces(sacred_place_id) {
 }
 fetchSacredPlaces.toString = () => 'FETCH_SACRED_PLACES'
 
+function markAsRead(sacred_place_id) {
+  return dispatch => {
+    fetchMySQL(`INSERT IGNORE INTO history(user_id, sacred_place_id, timestamp) VALUES (${getState().main.currentUser.id}, ${sacred_place_id}, NOW()`)
+  }
+}
+
 
 export const actions = Object.assign({}, payloadActions, {fetchAnimes, fetchFavoriteAnimes, setAnimeLike, signin, fetchSacredPlaces})

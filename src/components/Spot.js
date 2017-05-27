@@ -6,6 +6,9 @@ import Header from './Header'
 class Spot extends React.Component {
   componentDidMount() {
     this.props.main.fetchSacredPlaces(this.props.params.id)
+    if (this.props.location.query.mark_as_read) {
+      this.props.main.markAsRead(this.props.params.id)
+    }
   }
 
   render() {
