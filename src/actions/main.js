@@ -1,4 +1,5 @@
 import Cookies from 'js-cookie'
+import {push} from 'react-router-redux'
 import {withLabels} from './utils'
 import {fetchMySQL} from '../utils'
 
@@ -18,7 +19,8 @@ function signin(screen_name) {
           id: users[0].id,
           screen_name
         }
-      })
+      }),
+      dispatch(push('/timeline'))
     })
   }
 }
