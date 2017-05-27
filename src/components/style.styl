@@ -2,11 +2,11 @@
 @import url('https://fonts.googleapis.com/css?family=Handlee');
 @font-face 
   font-family: "sen"
-  src: url("/assets/fonts/Sen-Bold.ttf")
+  src: url("/fonts/Sen-Bold.ttf")
 
 @font-face 
   font-family: "sen-regular"
-  src: url("/assets/fonts/Sen-Regular.ttf")
+  src: url("/fonts/Sen-Regular.ttf")
 
 @media screen and ( min-width:479px )
 	*
@@ -14,20 +14,38 @@
 
 *
 	font-family: 'sen-regular'
+	margin 0
+	padding 0
+	
 div.header
-	position fixed
-	top 0
-	left 0
-	right 0
-	background #efefef
-	border solid 1px #ccc
-	padding .25em
+	width 100%		
+	background #fcfcfc
+	border-bottom solid 1px #eee
 	p
 		text-align center
 		width 100%
-		padding 0
-		font-size 1.2em
-
+		padding .75em 0
+		color #333
+		font-size 1.5em
+		letter-spacing 2px
+		
+main.mypage
+	padding 0 .5em
+	.user-info
+		display flex
+		padding 1em 0
+		flex-flow: column nowrap
+		align-items center
+		img
+			width 35%
+			border solid 5px #eee
+			border-radius 100%
+		p.sn
+			color #333
+			font-size 1.05em
+			padding .5em
+			letter-spacing 1px
+			
 main.top
 	height 100vh
 	width 100vw

@@ -3,6 +3,7 @@ import {Provider} from 'react-redux'
 import {Router} from 'react-router'
 import Top from './Top'
 import Header from './Header'
+import MyPage from './MyPage.js'
 import './style'
 
 
@@ -18,7 +19,12 @@ const routes = [
     indexRoute: {
       component: Top
     },
-    childRoutes: []
+    childRoutes: [
+      {
+        path: '/mypage',
+        component: MyPage
+      }
+	]
   }
 ]
 
