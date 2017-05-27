@@ -90,25 +90,23 @@ markAsRead.toString = () => 'MARK_AS_READ'
 
 function fetchNearSpot() {
   console.log('fetchNearSpot')
-  let currentPosition = {
-    latitude: 0,
-    longitude: 0
-  }
-  navigator.geolocation.getCurrentPosition(function(position) {
-    currentPosition = {
-      latitude: position.coords.latitude,
-      longitude: position.coords.longitude
-    }
-  })
-  console.log(currentPosition)
-  return (dispatch) => {
-    fetchMySQL(`SELECT * FROM sacred_place JOIN anime ON sacred_place.anime_id = anime.id WHERE sacred_place.latitude > ${currentPosition.latitude - 10} AND sacred_place.latitude < ${currentPosition.latitude + 10} AND sacred_place.longitude > ${currentPosition.longitude - 10} AND sacred_place.longitude < ${currentPosition.longitude + 10}`)
-      .then(nearSpots => dispatch({
-        type: 'FETCH_NEAR_SPOTS',
-        payload: {nearSpots}
-      }))
+  return dispatch => {
+    navigator.geolocation.getCurrentPosition(function(position) {
+      const currentPosition = {
+        latitude: position.coords.latitude,
+        longitude: position.coords.longitude
+      }
+
+      console.log(currentPosition)
+
+      fetchMySQL(`SELECT * FROM sacred_place JOIN anime ON sacred_place.anime_id = anime.id WHERE sacred_place.latitude > ${currentPosition.latitude - 10} AND sacred_place.latitude < ${currentPosition.latitude + 10} AND sacred_place.longitude > ${currentPosition.longitude - 10} AND sacred_place.longitude < ${currentPosition.longitude + 10}`)
+        .then(nearSpots => dispatch({
+          type: 'FETCH_NEAR_SPOTS',
+          payload: {nearSpots}
+        }))
+    })
   }
 }
-
+fetchNearSpot.toString = () => 'FETCH_NEAR_SPOT'
 
 export const actions = Object.assign({}, payloadActions, {fetchAnimes, fetchFavoriteAnimes, setAnimeLike, signin, fetchSacredPlaces, markAsRead, fetchNearSpot})
