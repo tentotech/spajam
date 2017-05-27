@@ -1,15 +1,8 @@
 import Cookies from 'js-cookie'
+import {push} from 'react-router-redux'
 import {withLabels} from './utils'
+import {fetchMySQL} from '../utils'
 
-
-function fetchMySQL(query) {
-  console.log('query invoked: ', query)
-  const body = new URLSearchParams()
-  body.append('sql', query)
-  return fetch('http://302a08e6.ngrok.io/sql', {method: 'POST', mode: 'cors', body})
-    .then(res => res.json())
-    .then(json => json.response)
-}
 
 var payloadActions = withLabels({})
 
@@ -26,7 +19,8 @@ function signin(screen_name) {
           id: users[0].id,
           screen_name
         }
-      })
+      }),
+      dispatch(push('/timeline'))
     })
   }
 }
@@ -66,5 +60,33 @@ function setAnimeLike(anime_id, isFavorite) {
 }
 setAnimeLike.toString = () => 'SET_ANIME_LIKE'
 
+function fetchSacredPlaces(sacred_place_id) {
+  console.log('hahaha')
+  return dispatch => {
+    fetchMySQL(`SELECT * FROM sacred_place WHERE id = ${sacred_place_id}`).then(sacred_places => {
+      const sacred_place = sacred_places[0]
+      fetchMySQL(`SELECT * FROM anime WHERE id = ${sacred_place.anime_id}`).then(animes => {
+        const anime = animes[0]
+        fetchMySQL(`SELECT user.* FROM history JOIN sacred_place ON history.sacred_place_id = sacred_place.id JOIN user ON history.user_id = user.id WHERE sacred_place.id = ${sacred_place_id}`).then(users => {
+          dispatch({
+            type: 'FETCH_SACRED_PLACES',
+            payload: {
+              sacred_place, anime, users
+            }
+          })
+        })
+      })
+    })
+  }
+}
+fetchSacredPlaces.toString = () => 'FETCH_SACRED_PLACES'
 
-export const actions = Object.assign({}, payloadActions, {fetchAnimes, fetchFavoriteAnimes, setAnimeLike, signin})
+function markAsRead(sacred_place_id) {
+  return (dispatch, getState) => {
+    fetchMySQL(`INSERT IGNORE INTO history(user_id, sacred_place_id, timestamp) VALUES (${getState().main.currentUser.id}, ${sacred_place_id}, NOW())`)
+  }
+}
+markAsRead.toString = () => 'MARK_AS_READ'
+
+
+export const actions = Object.assign({}, payloadActions, {fetchAnimes, fetchFavoriteAnimes, setAnimeLike, signin, fetchSacredPlaces, markAsRead})

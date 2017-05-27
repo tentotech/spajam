@@ -18,9 +18,17 @@ export const reducer = handleActions({
     return Object.assign({}, state, {
       favoriteAnimes: payload.favoriteAnimes
     })
+  },
+  [actions.main.fetchSacredPlaces]: (state, {payload}) => {
+    return Object.assign({}, state, {
+      sacredPlace: payload
+    })
   }
 }, {
   currentUser: {id: Cookies.get('id'), screen_name: Cookies.get('screen_name')},
   animes: [],
-  favoriteAnimes: []
+  favoriteAnimes: [],
+  sacredPlace: {
+    anime: {}, users: [], sacred_place: {}
+  }
 })
