@@ -14,7 +14,6 @@ class Top extends React.Component {
     OAuth.initialize('HmEj0j3_xMF0oeS8WzuqFdHTfFQ')
     OAuth.popup('twitter').done(result => {
       result.me().done(result => {
-        debugger
         this.props.main.signin(result.alias)
       })
     }).fail(err => console.error(err))
