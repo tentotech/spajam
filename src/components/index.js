@@ -8,7 +8,6 @@ import './style'
 
 const Root = ({children}) =>
   <div>
-    <Header/>
     {children}
   </div>
 

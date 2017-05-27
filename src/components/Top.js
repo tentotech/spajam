@@ -6,8 +6,13 @@ import {OAuth} from 'oauthio-web'
 class Top extends React.Component {
   render() {
     return <main className='top'>
-      <a onClick={this.signin.bind(this)}>Sign in with Twitter</a>
-    </main>
+        <div className='filter'>
+          <h1>Aniplace</h1>
+		  <div className="btn">
+          	<a onClick={this.signin.bind(this)}>Sign in with Twitter</a>
+		  </div>
+		</div>
+      </main>
   }
 
   signin() {
