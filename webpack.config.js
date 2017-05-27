@@ -1,23 +1,25 @@
+const webpack = require('webpack')
+const path = require('path')
+
 module.exports = {
-  entry: __dirname + "./src/index.js",
+  entry: __dirname + "/src/index.js",
   output: {
     path: __dirname + '/dist',
     filename: 'bundle.js'
   },
-
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loader: 'babel-loader',
+        use:['babel-loader'],
       }
     ]
   },
 
   devtool: 'source-map',
   resolve: {
-    extensions: ['', '.js', '.jsx', '.scss', '.css']
+    extensions: ['.js', '.jsx']
   },
   devServer: {
     contentBase: './static',
