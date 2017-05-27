@@ -170,7 +170,7 @@ main.mypage
 	padding 0 .5em
 	.user-info
 		display flex
-		padding 1em 0
+		padding 1em 0!important
 		flex-flow: column nowrap
 		align-items center
 		img
@@ -180,8 +180,52 @@ main.mypage
 		p.sn
 			color #333
 			font-size 1.05em
-			padding .5em
+			padding .5em!important
 			letter-spacing 1px
+		p.flag
+			padding .5em!important
+			font-size .8em
+			letter-spacing 1px
+			i
+				color #8bc34a
+				font-size 1.25em
+				margin-right .2em !important
+				vertical-align middle
+			span
+				color #555
+				vertical-align middle
+	.history
+		a
+			border-bottom solid 1px #ddd
+			display flex
+			justify-content center
+			align-items center
+			padding .5em!important
+			&:first-child
+				border-top solid 1px #ddd
+			.icon
+				width 15%
+				color #8bc34a
+				display flex
+				justify-content center
+				align-items center
+				i
+					font-size 1.75em
+			.data
+				width 85%
+				h2
+					color #444
+					font-weight 400
+					letter-spacing 2px
+					padding .35em 0!important
+					font-size 1.05em
+					overflow: hidden
+					white-space: nowrap
+					text-overflow: ellipsis
+					width 100%
+				p
+					color #555
+					font-size .8em
 			
 main.top
 	height 100vh
