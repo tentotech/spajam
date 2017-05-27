@@ -122,6 +122,16 @@ function fetchNearSpot() {
 }
 fetchNearSpot.toString = () => 'FETCH_NEAR_SPOT'
 
+function fetchHistories() {
+  return (dispatch, getState) => {
+    fetchMySQL(`SELECT history.timestamp, sacred_place.name, anime.title FROM history JOIN sacred_place ON sacred_place.id = history.sacred_place_id JOIN anime ON anime.id = sacred_place.id WHERE history.user_id = ${getState().main.currentUser.id}`)
+      .then(response => dispatch({
+        type: 'FETCH_HISTORIES',
+        payload: response
+      }))
+  }
+}
+fetchHistories.toString = () => 'FETCH_HISTORIES'
 
-export const actions = Object.assign({}, payloadActions, {fetchAnimes, fetchFavoriteAnimes, setAnimeLike, signin, fetchSacredPlaces, markAsRead, fetchTimeLine,fetchNearSpot})
 
+export const actions = Object.assign({}, payloadActions, {fetchAnimes, fetchFavoriteAnimes, setAnimeLike, signin, fetchSacredPlaces, markAsRead, fetchTimeLine,fetchNearSpot, fetchHistories})

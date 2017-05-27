@@ -4,7 +4,7 @@ import Header from './Header'
 import Cookies from 'js-cookie'
 
 
-const HistoryItem => ({timestamp, sacred_place_name, anime_name}) => {
+const HistoryItem = ({timestamp, sacred_place_name, anime_name}) => {
   return <a>
     <div className="icon">
       <i className="ion-flag"/>
@@ -20,7 +20,7 @@ const HistoryItem => ({timestamp, sacred_place_name, anime_name}) => {
 
 class MyPage extends React.Component {
   componentDidMount() {
-    this.props.main.fetchHistory()
+    this.props.main.fetchHistories()
   }
 
   render() {
@@ -31,12 +31,12 @@ class MyPage extends React.Component {
         <p className="sn">@{Cookies.get('screen_name')}</p>
         <p className="flag">
           <i className="ion-flag"/>
-          <span>今まで0個の聖地を訪れました</span>
-        </p>
+          <span>今まで{this.props.main.histories.length}個の聖地を訪れました</span>
+        </p>t
       </div>
       <div className="history">
-        {this.props.main.histories.map(history => <HistoryItem sacred_place_name={history.sacred_place} timestamp={history.timestamp} anime_name={history.anime.name} />)}
-		  </div>
+      {this.props.main.histories.map((history, index) => <HistoryItem sacred_place_name={history.name} timestamp={history.timestamp} anime_name={history.title} key={index} />)}
+      </div>
     </main>
   }
 }

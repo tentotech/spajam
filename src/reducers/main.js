@@ -3,7 +3,6 @@ import {handleActions} from 'redux-actions'
 import actions from '../actions'
 
 
-debugger
 export const reducer = handleActions({
   [actions.main.signin]: (state, {payload}) =>
     Object.assign({}, state, {
@@ -34,6 +33,12 @@ export const reducer = handleActions({
       nearSpots: payload.nearSpots
 
     })
+  },
+  [actions.main.fetchHistories]: (state, {payload}) => {
+
+    return Object.assign({}, state, {
+      histories: payload
+    })
   }
 }, {
   currentUser: {id: Cookies.get('id'), screen_name: Cookies.get('screen_name')},
@@ -42,5 +47,6 @@ export const reducer = handleActions({
   sacredPlace: {
     anime: {}, users: [], sacred_place: {}
   },
-  nearSpots: []
+  nearSpots: [],
+  histories: []
 })
