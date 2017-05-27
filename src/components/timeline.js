@@ -10,7 +10,7 @@ class TimeLine extends React.Component {
 
   render() {
     return <main className='timeline'>
-		<Header/>
+		<Header title="timeline"/>
 		<div className="items">
 		  <a className="item">
 		  	<div className="icon">

@@ -12,11 +12,15 @@ class Header extends React.Component {
  	render() {
 	return <div className="wrap">
 		<div className="header" >
-			<p>Hello</p>
+			<p>{this.props.title}</p>
 			<i className="ion-navicon menu-icon" onClick={ () => this.toggle() }/>
 		</div>
 		<div className={this.state.isOpen ? 'menu active' : 'menu'}>
-			<a>
+			<a href="/near-spot-list">
+				<i className="ion-navigate"/>
+				<span>近くの聖地を探す</span>
+			</a>
+			<a href="/timeline">
 				<i className="ion-bonfire"/>
 				<span>タイムライン</span>
 			</a>

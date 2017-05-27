@@ -3,7 +3,6 @@ import {handleActions} from 'redux-actions'
 import actions from '../actions'
 
 
-debugger
 export const reducer = handleActions({
   [actions.main.signin]: (state, {payload}) =>
     Object.assign({}, state, {

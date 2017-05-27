@@ -30,7 +30,7 @@ export class FavoriteAnimeConfig extends React.Component {
 
   render() {
     return <main className='preferred-anime-config'>
-		<Header/>
+		<Header title="favorite anime"/>
       {this.props.main.animes.map(({id, title}) =>
         <ConnectedAnimeItem id={id} title={title} key={id} />
       )}
