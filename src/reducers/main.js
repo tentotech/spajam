@@ -24,9 +24,15 @@ export const reducer = handleActions({
       sacredPlace: payload
     })
   },
+  [actions.main.fetchTimeLine]:(state, {payload}) => {
+    return Object.assign({}, state, {
+      timeline: payload
+    })
+  },
   [actions.main.fetchNearSpot]: (state, {payload}) => {
     return Object.assign({}, state, {
       nearSpots: payload.nearSpots
+
     })
   }
 }, {

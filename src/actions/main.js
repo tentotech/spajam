@@ -6,6 +6,8 @@ import {fetchMySQL} from '../utils'
 
 var payloadActions = withLabels({})
 
+
+
 function signin(screen_name) {
   return dispatch => {
     fetchMySQL(`INSERT IGNORE INTO user(screen_name) VALUES ("${screen_name}")`).then(response =>
@@ -24,6 +26,17 @@ function signin(screen_name) {
     })
   }
 }
+
+function fetchTimeLine() {
+  console.log('fetchtimeline')
+  return dispatch => {
+    fetchMySQL('SELECT * FROM history;').then(history => dispatch({
+      type: 'FETCH_TIMELINE',
+      payload: {history}
+    }))
+  }
+}
+fetchTimeLine.toString = () => 'FETCH_TIMELINE'
 
 function fetchAnimes() {
   console.log('fetchAnimes')
@@ -109,4 +122,6 @@ function fetchNearSpot() {
 }
 fetchNearSpot.toString = () => 'FETCH_NEAR_SPOT'
 
-export const actions = Object.assign({}, payloadActions, {fetchAnimes, fetchFavoriteAnimes, setAnimeLike, signin, fetchSacredPlaces, markAsRead, fetchNearSpot})
+
+export const actions = Object.assign({}, payloadActions, {fetchAnimes, fetchFavoriteAnimes, setAnimeLike, signin, fetchSacredPlaces, markAsRead, fetchTimeLine,fetchNearSpot})
+

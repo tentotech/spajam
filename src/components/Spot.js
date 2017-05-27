@@ -6,6 +6,7 @@ import Header from './Header'
 class Spot extends React.Component {
   componentDidMount() {
     this.props.main.fetchSacredPlaces(this.props.params.id)
+    console.log(this.props.main)
     if (this.props.location.query.mark_as_read) {
       this.props.main.markAsRead(this.props.params.id)
     }
@@ -13,9 +14,9 @@ class Spot extends React.Component {
 
   render() {
     return <main className="spot">
-      <div className="cover" style={{'backgroundImage': `url("http://blog-imgs-92.fc2.com/b/l/o/blogman55/livejupiter_1461993406_12701.jpg")`}}>
+      <div className="cover" style={{'backgroundImage': `url(${this.props.main.sacredPlace.sacred_place.image})`}}>
         <div className="filter">
-          <h1 className="title">おおスポット名やでスポット名やで</h1>
+          <h1 className="title">{this.props.main.sacredPlace.sacred_place.name}</h1>
         </div>
       </div>
       <div className="info">
