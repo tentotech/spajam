@@ -5,8 +5,8 @@ import Top from './Top'
 import Header from './Header'
 import MyPage from './MyPage.js'
 import TimeLine from './timeline.js'
-
 import Spot from './Spot.js'
+import NearSpotList from './NearSpotList'
 
 import FavoriteAnimeConfig from './FavoriteAnimeConfig.js'
 
@@ -36,10 +36,14 @@ const routes = [
         path: '/favorite-anime-config',
         component: FavoriteAnimeConfig
       },
-	  {
-		path: '/timeline',
-		component: TimeLine
-	  }
+      {
+        path: '/timeline',
+        component: TimeLine
+      },
+      {
+        path: 'near-spot-list',
+        component: NearSpotList
+      }
     ]
   }
 ]
