@@ -14,8 +14,8 @@
 
 *
 	font-family: 'sen-regular'
-	margin 0
-	padding 0
+	margin 0!important
+	padding 0!important
 	
 div.header
 	width 100%		
@@ -28,7 +28,83 @@ div.header
 		color #333
 		font-size 1.5em
 		letter-spacing 2px
-		
+main.spot
+	.cover
+		width 100%
+		height 10em
+		background-size cover
+		background-position center
+		.filter
+			width 100%
+			height 100%
+			padding .5em
+			position relative
+			background linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0.5) 100%);
+			.title
+				color #fff
+				font-family: 'sen-regular'
+				font-weight 400
+				font-size 1.25em
+				letter-spacing 2px
+				padding .75em .5em!important
+				position absolute
+				bottom 0
+				right 0
+				left 0
+				overflow: hidden
+				white-space: nowrap
+				text-overflow: ellipsis
+	.info
+		padding .5em!important
+		p
+			padding .15em 0!important
+			color #444
+			letter-spacing 1px
+			font-size .8em
+			vertical-align middle
+			i
+				color #8bc34a
+				font-size 2em
+				vertical-align middle
+				display inline-block
+				margin 0 .25em!important
+				opacity 0.8
+			span
+				vertical-align middle
+				font-size 1em
+	.friends	
+		padding .5em!important
+		p
+			color #444
+			letter-spacing 1px
+			padding .5em 0 !important
+			font-size .8em
+		img
+			border-radius 100%
+			display inline-block
+			width 2em
+			height 2em
+			margin .15em!important
+	.googleMap
+		position fixed
+		bottom 0
+		right 0
+		left 0
+		background #8bc34a
+		text-align center
+		padding .5em !important
+		p
+			color #fff
+			letter-spacing 1px
+			i
+				vertical-align middle
+				font-size 1.5em
+				margin-right .25em!important
+			span
+				vertical-align middlew
+
+
+
 main.mypage
 	padding 0 .5em
 	.user-info
