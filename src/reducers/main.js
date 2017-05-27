@@ -22,6 +22,9 @@ export const reducer = handleActions({
   [actions.main.fetchSacredPlaces]: (state, {payload}) => {
     return Object.assign({}, state, {
       sacredPlace: payload
+  [actions.main.fetchNearSpot]: (state, {payload}) => {
+    return Object.asnsign({}, state, {
+      nearSpots: payload.nearSpots
     })
   }
 }, {
@@ -30,5 +33,6 @@ export const reducer = handleActions({
   favoriteAnimes: [],
   sacredPlace: {
     anime: {}, users: [], sacred_place: {}
-  }
+  },
+  nearSpots: []
 })
