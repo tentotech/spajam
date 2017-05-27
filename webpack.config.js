@@ -1,28 +1,55 @@
 const webpack = require('webpack')
-const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const poststylus = require('poststylus')
+
 
 module.exports = {
-  entry: __dirname + "/src/index.js",
+  entry: [
+    'react-hot-loader/patch',
+    './src/index.js'
+  ],
   output: {
-    path: __dirname + '/dist',
-    filename: 'bundle.js'
+    path: __dirname + '/static',
+    filename: 'bundle.js',
   },
   module: {
     rules: [
       {
         test: /\.js$/,
+        include: __dirname + '/src',
         exclude: /node_modules/,
-        use:['babel-loader'],
+        use: ['react-hot-loader/webpack', 'babel-loader'],
+      },
+      {
+        test: /.pug$/,
+        exclude: /node_modules/,
+        use: 'pug-loader'
+      },
+      {
+        test: /\.styl$/,
+        exclude: /node_modules/,
+        use: ['style-loader', 'css-loader', 'stylus-loader']
       }
     ]
   },
-
   devtool: 'source-map',
   resolve: {
-    extensions: ['.js', '.jsx']
+    extensions: ['.js', '.jsx', '.styl']
   },
   devServer: {
     contentBase: './static',
-    historyApiFallback: true
-  }
+    historyApiFallback: true,
+    hot: true
+  },
+  plugins: [
+    new webpack.LoaderOptionsPlugin({
+      stylus: {
+        use: poststylus(['autoprefixer'])
+      }
+    }),
+    new HtmlWebpackPlugin({
+      template: './src/index.pug'
+    }),
+    new webpack.HotModuleReplacementPlugin()
+  ]
 }
