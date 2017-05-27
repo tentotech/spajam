@@ -25,6 +25,7 @@ const ConnectedAnimeItem = container(AnimeItem)
 export class FavoriteAnimeConfig extends React.Component {
   componentDidMount() {
     this.props.main.fetchAnimes()
+    this.props.main.fetchFavoriteAnimes()
   }
 
   render() {

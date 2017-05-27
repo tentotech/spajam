@@ -42,7 +42,7 @@ fetchAnimes.toString = () => 'FETCH_ANIMES'
 
 function fetchFavoriteAnimes() {
   return (dispatch, getState) => {
-    fetchMySQL(`SELECT favorite_anime.* FROM favorite_anime, user WHERE user.screen_name = ${getState().main.currentUser.id}`)
+    fetchMySQL(`SELECT * FROM favorite_anime WHERE user_id = ${getState().main.currentUser.id}`)
       .then(favoriteAnimes => dispatch({
         type: 'FETCH_FAVORITE_ANIMES',
         payload: {favoriteAnimes}
@@ -54,7 +54,7 @@ fetchFavoriteAnimes.toString = () => 'FETCH_FAVORITE_ANIMES'
 function setAnimeLike(anime_id, isFavorite) {
   return (dispatch, getState) => {
     if (isFavorite) {
-      fetchMySQL(`INSERT INTO favorite_anime(user_id, anime_id) VALUES (${getState().main.currentUser.id}, ${anime_id})`)
+      fetchMySQL(`INSERT IGNORE INTO favorite_anime(user_id, anime_id) VALUES (${getState().main.currentUser.id}, ${anime_id})`)
         .then(() => dispatch(fetchFavoriteAnimes()))
     } else {
       fetchMySQL(`DELETE FROM favorite_anime WHERE user_id = ${getState().main.currentUser.id} AND anime_id = ${anime_id}`)
