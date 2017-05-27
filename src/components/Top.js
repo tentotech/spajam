@@ -1,6 +1,6 @@
 import * as React from 'react'
 import {container} from '../utils'
-import OAuth from 'oauth'
+import {OAuth} from 'oauthio-web'
 
 
 class Top extends React.Component {
@@ -11,10 +11,13 @@ class Top extends React.Component {
   }
 
   signin() {
-    OAuth.poup('twitter')
-      .done(result => {
-        this.props.main.signin(result.me().name)
-      }).fail(err => console.error(err))
+    OAuth.initialize('HmEj0j3_xMF0oeS8WzuqFdHTfFQ')
+    OAuth.popup('twitter').done(result => {
+      result.me().done(result => {
+        debugger
+        this.props.main.signin(result.alias)
+      })
+    }).fail(err => console.error(err))
   }
 }
 

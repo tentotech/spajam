@@ -10,12 +10,13 @@ module.exports = {
   ],
   output: {
     path: __dirname + '/static',
-    filename: 'bundle.js'
+    filename: 'bundle.js',
   },
   module: {
     rules: [
       {
         test: /\.js$/,
+        include: __dirname + '/src',
         exclude: /node_modules/,
         use: ['react-hot-loader/webpack', 'babel-loader'],
       },
@@ -31,7 +32,6 @@ module.exports = {
       }
     ]
   },
-
   devtool: 'source-map',
   resolve: {
     extensions: ['.js', '.jsx', '.styl']
