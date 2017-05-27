@@ -6,7 +6,7 @@ class AnimeItem extends React.Component {
   render() {
     return <label>
       {this.props.title}
-      <input type="checkbox" checked={this.isFavorite()} onClick={event => this.handleClick(event)} />
+      <input type="checkbox" checked={this.isFavorite()} onChange={event => this.handleClick(event)} />
     </label>
   }
 
@@ -15,7 +15,7 @@ class AnimeItem extends React.Component {
   }
 
   isFavorite() {
-    this.props.main.favoriteAnimes.some(favoriteAnime => favoriteAnime.anime_id == this.props.id)
+    return this.props.main.favoriteAnimes.some(favoriteAnime => favoriteAnime.anime_id == this.props.id)
   }
 }
 
