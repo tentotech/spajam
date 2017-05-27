@@ -4,8 +4,10 @@ import {Router} from 'react-router'
 import Top from './Top'
 import Header from './Header'
 import MyPage from './MyPage.js'
+import TimeLine from './timeline.js'
 
 import Spot from './Spot.js'
+
 import FavoriteAnimeConfig from './FavoriteAnimeConfig.js'
 
 import './style'
@@ -31,9 +33,13 @@ const routes = [
         path: '/spot/:id',
         component: Spot
       }, {
-        path: 'favorite-anime-config',
+        path: '/favorite-anime-config',
         component: FavoriteAnimeConfig
-      }
+      },
+	  {
+		path: '/timeline',
+		component: TimeLine
+	  }
     ]
   }
 ]
