@@ -33,7 +33,7 @@ class MyPage extends React.Component {
         <p className="flag">
           <i className="ion-flag"/>
           <span>今まで{this.props.main.histories.length}個の聖地を訪れました</span>
-        </p>t
+        </p>
       </div>
       <div className="history">
       {this.props.main.histories.map((history, index) => <HistoryItem sacred_place_id={history.sacred_place_id} sacred_place_name={history.name} timestamp={history.timestamp} anime_name={history.title} key={index} />)}

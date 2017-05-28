@@ -4,7 +4,7 @@ import Header from './Header'
 
 class NearSpotItem extends React.Component {
   render () {
-    return <a href={'/spot/' + this.props.id} className="near-spot">
+    return <a href={'/spot/' + this.props.id + '?mark_as_read=true'} className="near-spot">
       <div className="icon">
                       <i className="ion-navigate"/>
            </div>
