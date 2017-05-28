@@ -6,8 +6,6 @@ import {fetchMySQL} from '../utils'
 
 var payloadActions = withLabels({})
 
-
-
 function signin(screen_name) {
   return dispatch => {
     fetchMySQL(`INSERT IGNORE INTO user(screen_name) VALUES ("${screen_name}")`).then(response =>
@@ -26,17 +24,6 @@ function signin(screen_name) {
     })
   }
 }
-
-function fetchTimeLine() {
-  console.log('fetchtimeline')
-  return dispatch => {
-    fetchMySQL('SELECT * FROM history;').then(history => dispatch({
-      type: 'FETCH_TIMELINE',
-      payload: {history}
-    }))
-  }
-}
-fetchTimeLine.toString = () => 'FETCH_TIMELINE'
 
 function fetchAnimes() {
   console.log('fetchAnimes')
@@ -133,5 +120,16 @@ function fetchHistories() {
 }
 fetchHistories.toString = () => 'FETCH_HISTORIES'
 
+function fetchTimeline() {
+  return dispatch => {
+    fetchMySQL(`SELECT sacred_place.id AS sacred_place_id, sacred_place.name AS sacred_place_name, sacred_place.address, history.timestamp, user.screen_name FROM history JOIN sacred_place ON sacred_place.id = history.sacred_place_id JOIN user ON user.id = history.user_id ORDER BY history.timestamp LIMIT 10`)
+      .then(response => dispatch({
+        type: 'FETCH_TIMELINE',
+        payload: response
+      }))
+  }
+}
+fetchTimeline.toString = () => 'FETCH_TIMELINE'
 
-export const actions = Object.assign({}, payloadActions, {fetchAnimes, fetchFavoriteAnimes, setAnimeLike, signin, fetchSacredPlaces, markAsRead, fetchTimeLine,fetchNearSpot, fetchHistories})
+
+export const actions = Object.assign({}, payloadActions, {fetchAnimes, fetchFavoriteAnimes, setAnimeLike, signin, fetchSacredPlaces, markAsRead, fetchNearSpot, fetchHistories, fetchTimeline})

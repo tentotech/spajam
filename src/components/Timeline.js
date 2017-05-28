@@ -1,51 +1,39 @@
 import * as React from 'react'
+import {Link} from 'react-router'
 import {container} from '../utils'
-import Header from './Header'
 
-class TimeLine extends React.Component {
+
+const Activity = ({screen_name, sacred_place_name, timestamp, address, sacred_place_id}) =>
+  <Link to={`/spot/${sacred_place_id}`} className="item">
+    <div className="icon">
+	    <img src={`http://furyu.nazo.cc/twicon/${screen_name}/original`} />
+  	</div>
+  	<div className="data">
+	    <p>
+      	<i className="ion-bonfire"/>
+        <span>{screen_name}さんが訪れました</span>
+    	</p>
+      <h2>{sacred_place_name}</h2>
+      <div className="min-data">
+        <p className="addr">{address}</p>
+        <p className="time">{timestamp}</p>
+    	</div>
+    </div>
+  </Link>
+
+
+class Timeline extends React.Component {
   componentDidMount() {
-    this.props.main.fetchTimeLine()
-    console.log(this.props.main)
+    this.props.main.fetchTimeline()
   }
 
   render() {
     return <main className='timeline'>
 		  <div className="items">
-        <a className="item">
-		  	  <div className="icon">
-		  		  <img src={`http://furyu.nazo.cc/twicon/pattern_match/original`} />
-  		  	</div>
-	  	  	<div className="data">
-		    		<p>
-		    			<i className="ion-bonfire"/>
-		  	  		<span>誰々さんが訪れました</span>
-		  		  </p>
-  		  		<h2>聖地の名前やで</h2>
-	    	  		<div className="min-data">
-		    			<p className="addr">ふじみ野し築地2-1-36</p>
-		  	  		<p className="time">1999/4/10</p>
-		  		  </div>
-  		  	</div>
-  		  </a>
-	  	  <a className="item">
-		    	<div className="icon">
-		    		<img src={`http://furyu.nazo.cc/twicon/pattern_match/original`} />
-		  	  </div>
-  		  	<div className="data">
-	  	  		<p>
-		    			<i className="ion-bonfire"/>
-		    			<span>誰々さんが訪れました</span>
-		  	  	</p>
-		  		  <h2>聖地の名前やで</h2>
-  		  		<div className="min-data">
-		    			<p className="addr">ふじみ野し築地2-1-36</p>
-	  	  			<p className="time">1999/4/10</p>
-		    		</div>
-		  	  </div>
-  		  </a>
+      {this.props.main.activities.map((activity, index) => <Activity key={index} {...activity}/>)}
 	  	</div>
     </main>
   }
 }
 
-export default container(TimeLine)
+export default container(Timeline)

@@ -35,9 +35,13 @@ export const reducer = handleActions({
     })
   },
   [actions.main.fetchHistories]: (state, {payload}) => {
-
     return Object.assign({}, state, {
       histories: payload
+    })
+  },
+  [actions.main.fetchTimeline]: (state, {payload}) => {
+    return Object.assign({}, state, {
+      activities: payload
     })
   }
 }, {
@@ -48,5 +52,6 @@ export const reducer = handleActions({
     anime: {}, users: [], sacred_place: {}
   },
   nearSpots: [],
-  histories: []
+  histories: [],
+  activities: []
 })
