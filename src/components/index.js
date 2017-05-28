@@ -4,7 +4,7 @@ import {Router} from 'react-router'
 import Top from './Top'
 import Header from './Header'
 import MyPage from './MyPage.js'
-import TimeLine from './timeline.js'
+import Timeline from './Timeline'
 import Spot from './Spot.js'
 import NearSpotList from './NearSpotList'
 
@@ -38,7 +38,7 @@ const routes = [
       },
       {
         path: '/timeline',
-        component: TimeLine
+        component: Timeline
       },
       {
         path: 'near-spot-list',
