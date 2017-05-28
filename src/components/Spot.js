@@ -1,3 +1,4 @@
+import * as _ from 'lodash'
 import * as React from 'react'
 import {container} from '../utils'
 import Header from './Header'
@@ -8,7 +9,7 @@ class Spot extends React.Component {
     this.props.main.fetchSacredPlaces(this.props.params.id)
     if (this.props.location.query.mark_as_read) {
       this.props.main.markAsRead(this.props.params.id)
-      alert('ここに来たことを記録しました')
+      setTimeout(() => alert('ここに来たことを記録しました'), 1000)
     }
   }
 
@@ -32,7 +33,7 @@ class Spot extends React.Component {
         </p>
         <p>
           <i className="ion-location"/>
-          <span>{this.props.main.sacredPlace.sacred_place.address}</span>
+      <span>{this.props.main.sacredPlace.sacred_place.address}</span>
         </p>
         <p>
           <i className="ion-chatbubble-working"/>
@@ -41,7 +42,7 @@ class Spot extends React.Component {
       </div>
       <div className="friends">
         <p>ここを訪れたユーザー</p>
-        {this.props.main.sacredPlace.users.map(user => <img src={`http://furyu.nazo.cc/twicon/${user.screen_name}/normal`}/>)}
+      {_.values(_.groupBy(this.props.main.sacredPlace.users, user => user.screen_name)).map(userGroup => userGroup[0]).map(user => <img src={`http://furyu.nazo.cc/twicon/${user.screen_name}/normal`}/>)}
       </div>
       <div className="googleMap" onClick={this.handleClick.bind(this)}>
         <p>
