@@ -18,6 +18,7 @@ const ConnectedNearSpotItem = container(NearSpotItem)
 class NearSpotList extends React.Component {
   componentDidMount() {
     this.props.main.fetchNearSpot()
+	  console.log(this.props.main)
   }
 
   render() {
