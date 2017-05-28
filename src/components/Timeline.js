@@ -1,6 +1,7 @@
 import * as React from 'react'
 import {Link} from 'react-router'
 import {container} from '../utils'
+import Header from './Header'
 
 
 const Activity = ({screen_name, sacred_place_name, timestamp, address, sacred_place_id}) =>
@@ -29,6 +30,7 @@ class Timeline extends React.Component {
 
   render() {
     return <main className='timeline'>
+		  <Header title="time line"/>
 		  <div className="items">
       {this.props.main.activities.map((activity, index) => <Activity key={index} {...activity}/>)}
 	  	</div>
