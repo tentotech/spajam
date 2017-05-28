@@ -9,7 +9,7 @@ class Spot extends React.Component {
     this.props.main.fetchSacredPlaces(this.props.params.id)
     if (this.props.location.query.mark_as_read) {
       this.props.main.markAsRead(this.props.params.id)
-      alert('ここに来たことを記録しました')
+      setTimeout(() => alert('ここに来たことを記録しました'), 1000)
     }
   }
 
