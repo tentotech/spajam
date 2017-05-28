@@ -122,7 +122,7 @@ fetchHistories.toString = () => 'FETCH_HISTORIES'
 
 function fetchTimeline() {
   return dispatch => {
-    fetchMySQL(`SELECT sacred_place.id AS sacred_place_id, sacred_place.name AS sacred_place_name, sacred_place.address, history.timestamp, user.screen_name FROM history JOIN sacred_place ON sacred_place.id = history.sacred_place_id JOIN user ON user.id = history.user_id ORDER BY history.timestamp LIMIT 10`)
+    fetchMySQL(`SELECT sacred_place.id AS sacred_place_id, sacred_place.name AS sacred_place_name, sacred_place.address, history.timestamp, user.screen_name FROM history JOIN sacred_place ON sacred_place.id = history.sacred_place_id JOIN user ON user.id = history.user_id ORDER BY DESC history.timestamp LIMIT 10`)
       .then(response => dispatch({
         type: 'FETCH_TIMELINE',
         payload: response
