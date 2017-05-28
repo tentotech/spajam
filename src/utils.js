@@ -8,7 +8,7 @@ export function fetchMySQL(query) {
   console.log('query invoked: ', query)
   const body = new URLSearchParams()
   body.append('sql', query)
-  return fetch('http://302a08e6.ngrok.io/sql', {method: 'POST', mode: 'cors', body})
+  return fetch('https://302a08e6.ngrok.io/sql', {method: 'POST', mode: 'cors', body})
     .then(res => res.json())
     .then(json => json.response)
 }
