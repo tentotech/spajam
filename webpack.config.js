@@ -37,7 +37,8 @@ module.exports = {
   },
   devServer: {
     contentBase: './static',
-    historyApiFallback: true
+    historyApiFallback: true,
+	  disableHostCheck: true
   },
   plugins: [
     new webpack.LoaderOptionsPlugin({
